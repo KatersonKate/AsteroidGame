@@ -1,17 +1,17 @@
 class Obstacle
 {
-  float x,y;
-  int size;
-  float speed;
+  float x,y; // asteroid coordinates
+  int size; //asteroid size
+  float speed; //asteriod speed
   
-  void show()
+  void show() //creates the asteroids
   {
     fill(174);
     ellipse(x,y,size,size);
     
   }
   
-  void checkHit()
+  void checkHit() //checks if asteriods hit the rocket
   {
     if(dist(playerX,playerY,x,y)< size)
     {
@@ -25,7 +25,7 @@ class Obstacle
       screenNumber=2;
     }
   }
-  void checkIfOnScreen()
+  void checkIfOnScreen() //checks if the asteroids are on game screen
     {
     if(y > height)
     {
@@ -33,7 +33,7 @@ class Obstacle
     }
   }
   
-  void respawn()
+  void respawn() //respawns the asteroids
   {
     score += size;
     x=random(0, width);
@@ -41,9 +41,9 @@ class Obstacle
     y = random(-height / 4, size);
   }
 
-  void move()
+  void move() //moves the asteroids
   {
     y += (size + height/2)*speed;
-    checkIfOnScreen();
+    checkIfOnScreen(); //checks if they are on the screen after they moved
   }
 }

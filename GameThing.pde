@@ -1,13 +1,13 @@
 Obstacle[] obstacles; //Creates an array where the obstacles will be stored
-int screenNumber;
+int screenNumber; //Screen shown to player
 int playerX= 0; //Player's starting X coordinate
 int playerY= 0; //Player's starting Y coordinate
-int heal =600; //Player's health
+int heal =600; //Player's initial health
 PImage bg; //Background image
-PImage player; 
-int score = 0;
+PImage player; //Rocket image
+int score = 0; //Initial score
 
-void setup()
+void setup() //Basic game setup
 {
   size(845,845); //Creates 845 x 1005 game window
   rectMode(CENTER); //Makes drawing rectangle relative to thier center
@@ -26,7 +26,7 @@ void setup()
     obstacles[i].move();
   }
 }
-void draw ()
+void draw () //Draws the screens
 {
   background(0); //Fills the screen with one color
   if (screenNumber==0) //Title screen
@@ -54,10 +54,9 @@ void draw ()
   else if (screenNumber==1) //The game screen
   {
     
-    background(bg);
-    showPlayer();
-    move();
-    //life();
+    background(bg); //sets the background
+    showPlayer(); //sets the player rocket
+    move(); //allows the rocket to move using arrow keys
     for(int i=0; i<11; i++)
     {
       obstacles[i].show(); //Makes the current obstacles visible
@@ -76,12 +75,7 @@ void draw ()
     text("You scored: " + score, 150, 170);
   }
 }
-/*for(int i=0; i<4; i++)
- {
- g[i].show();
- g[i].energy();
- }*/
-void checkToStartGame()
+void checkToStartGame() //checks if the mouse has been clicked
 {
   if(mousePressed){
     screenNumber=1;
@@ -90,7 +84,7 @@ void checkToStartGame()
   }
 }
 
-void showPlayer()
+void showPlayer() //sets the rocket
 {
   fill(255);
   image(player, playerX, playerY, 40, 60);
@@ -113,7 +107,7 @@ void keyReleased() //function to detect if a key was released
   if(keyCode == UP) upPressed =false;
 }
 
-void move()
+void move() //Arrow key functions
 {
   playerY+=1;
   if (rightPressed) playerX+=4;
